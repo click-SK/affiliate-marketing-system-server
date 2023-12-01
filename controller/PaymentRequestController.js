@@ -106,6 +106,10 @@ export const aproveRequest = async (req,res) => {
 
         const newBalance = user.balance - sum;
 
+        if(newBalance < 0) {
+            newBalance = 0
+        }
+
         user.balance = newBalance;
 
         request.status = 'Successfully';
