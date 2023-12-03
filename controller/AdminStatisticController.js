@@ -1,5 +1,5 @@
 import AdminStatisticModel from "../model/AdminStatistic.js";
-import ImageStorageModel from "../model/ImageStorage.js";
+// import ImageStorageModel from "../model/ImageStorage.js";
 import UserModel from '../model/User.js';
 import * as AdminStatisticService from '../services/AdminStatisticService.js';
 
@@ -65,70 +65,70 @@ export const getAdminStatistic = async (req, res) => {
     }
 }
 
-export const createImageStorage = async (req, res) => {
-  try {
-    const storege = await ImageStorageModel.create({
-      BigBanner: '',
-      MiddleBanner: '',
-      SmallBanner: '',
-    });
+// export const createImageStorage = async (req, res) => {
+//   try {
+//     const storege = await ImageStorageModel.create({
+//       BigBanner: '',
+//       MiddleBanner: '',
+//       SmallBanner: '',
+//     });
 
-    res.json(storege);
-  }catch(error) {
-    console.log(error);
-    res.status(500).json({
-        message: 'Upload Error'
-      });
-  }
-}
+//     res.json(storege);
+//   }catch(error) {
+//     console.log(error);
+//     res.status(500).json({
+//         message: 'Upload Error'
+//       });
+//   }
+// }
 
-export const UploadBigBaner = async (req, res) => {
-  try {
-    const storege = await ImageStorageModel.findOne();
+// export const UploadBigBaner = async (req, res) => {
+//   try {
+//     const storege = await ImageStorageModel.findOne();
 
-    storege.BigBanner = `/uploads/${req.file.originalname}`;
+//     storege.BigBanner = `/uploads/${req.file.originalname}`;
 
-    await storege.save();
-    res.json(storege);
-  }catch(error) {
-    console.log(error);
-    res.status(500).json({
-        message: 'Upload Error'
-      });
-  }
-}
+//     await storege.save();
+//     res.json(storege);
+//   }catch(error) {
+//     console.log(error);
+//     res.status(500).json({
+//         message: 'Upload Error'
+//       });
+//   }
+// }
 
-export const UploadMiddleBaner = async (req, res) => {
-  try {
-    const storege = await ImageStorageModel.findOne();
+// export const UploadMiddleBaner = async (req, res) => {
+//   try {
+//     const storege = await ImageStorageModel.findOne();
 
-    storege.MiddleBanner = `/uploads/${req.file.originalname}`;
+//     storege.MiddleBanner = `/uploads/${req.file.originalname}`;
 
-    await storege.save();
-    res.json(storege);
-  }catch(error) {
-    console.log(error);
-    res.status(500).json({
-        message: 'Upload Error'
-      });
-  }
-}
+//     await storege.save();
+//     res.json(storege);
+//   }catch(error) {
+//     console.log(error);
+//     res.status(500).json({
+//         message: 'Upload Error'
+//       });
+//   }
+// }
 
-export const UploadSmallBaner = async (req, res) => {
-  try {
-    const storege = await ImageStorageModel.findOne();
+// export const UploadSmallBaner = async (req, res) => {
+//   try {
+//     const storege = await ImageStorageModel.findOne();
 
-    storege.SmallBanner = `/uploads/${req.file.originalname}`;
+//     storege.SmallBanner = `/uploads/${req.file.originalname}`;
 
-    await storege.save();
-    res.json(storege);
-  }catch(error) {
-    console.log(error);
-    res.status(500).json({
-        message: 'Upload Error'
-      });
-  }
-}
+//     await storege.save();
+//     res.json(storege);
+//   }catch(error) {
+//     console.log(error);
+//     res.status(500).json({
+//         message: 'Upload Error'
+//       });
+//   }
+// }
 
 export const getOneUserForAdmin = async (req, res) => {
   try {
@@ -142,7 +142,6 @@ export const getOneUserForAdmin = async (req, res) => {
       });
   }
 }
-
 // setTimeout(() => {
-//   AdminStatisticService.createChartSevenDays();
+//   AdminStatisticService.createDefaultChartYear();
 // },5000)

@@ -7,6 +7,7 @@ import StatisticRouter from './router/StatisticRouter.js';
 import AdminStatisticRouter from './router/AdminStatisticRouter.js';
 import PaymantsMethodRouter from './router/PaymantsMethodRouter.js';
 import PaymentRequestRouter from './router/PaymentRequestRouter.js';
+import CreativesRouter from './router/CreativesRouter.js';
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ mongoose.connect(process.env.DB_URL).then(() => {
   app.use('/api',AdminStatisticRouter);
   app.use('/api',PaymantsMethodRouter);
   app.use('/api',PaymentRequestRouter);
+  app.use('/api',CreativesRouter);
   
 
   app.listen(process.env.PORT, () => {

@@ -1,5 +1,5 @@
 import UserModel from '../model/User.js';
-import ImageStoreModel from '../model/ImageStorage.js';
+// import ImageStoreModel from '../model/ImageStorage.js';
 import PartnerStatistic from '../model/PartnerStatistic.js';
 import * as Service from '../services/services.js';
 import * as ParthnerStatisticService from '../services/ParthnerStatisticService.js';
@@ -286,91 +286,91 @@ export const getMe = async (req, res) => {
     }
   }
 
-  export const dowloadBigBaner = async (req, res) => {
-    try {
-      const imageStore = await ImageStoreModel.findOne();
+  // export const dowloadBigBaner = async (req, res) => {
+  //   try {
+  //     const imageStore = await ImageStoreModel.findOne();
 
-      const __filename = fileURLToPath(import.meta.url);
+  //     const __filename = fileURLToPath(import.meta.url);
 
-      const __dirname = dirname(__filename);
+  //     const __dirname = dirname(__filename);
   
-      const filePath = path.join(__dirname, "..", imageStore.BigBanner); // Отримайте шлях до файлу
+  //     const filePath = path.join(__dirname, "..", imageStore.BigBanner); // Отримайте шлях до файлу
 
-      if (filePath) {
-        return res.download(filePath);
-      }
-      return res.status(400).json({ message: "Dowload error" });
+  //     if (filePath) {
+  //       return res.download(filePath);
+  //     }
+  //     return res.status(400).json({ message: "Dowload error" });
 
-    } catch(error) {
-      console.log(error);
-      res.status(400).json({
-        message: 'Dowload Error'
-      });
-    }
-  }
-  export const dowloadMiddleBaner = async (req, res) => {
-    try {
-      const imageStore = await ImageStoreModel.findOne();
+  //   } catch(error) {
+  //     console.log(error);
+  //     res.status(400).json({
+  //       message: 'Dowload Error'
+  //     });
+  //   }
+  // }
+  // export const dowloadMiddleBaner = async (req, res) => {
+  //   try {
+  //     const imageStore = await ImageStoreModel.findOne();
 
-      const __filename = fileURLToPath(import.meta.url);
+  //     const __filename = fileURLToPath(import.meta.url);
 
-      const __dirname = dirname(__filename);
+  //     const __dirname = dirname(__filename);
   
-      const filePath = path.join(__dirname, "..", imageStore.MiddleBanner); // Отримайте шлях до файлу
+  //     const filePath = path.join(__dirname, "..", imageStore.MiddleBanner); // Отримайте шлях до файлу
 
-      if (filePath) {
-        return res.download(filePath);
-      }
-      return res.status(400).json({ message: "Dowload error" });
+  //     if (filePath) {
+  //       return res.download(filePath);
+  //     }
+  //     return res.status(400).json({ message: "Dowload error" });
 
-    } catch(error) {
-      console.log(error);
-      res.status(400).json({
-        message: 'Dowload Error'
-      });
-    }
-  }
-  export const dowloadSmallBaner = async (req, res) => {
-    try {
-      const imageStore = await ImageStoreModel.findOne();
+  //   } catch(error) {
+  //     console.log(error);
+  //     res.status(400).json({
+  //       message: 'Dowload Error'
+  //     });
+  //   }
+  // }
+  // export const dowloadSmallBaner = async (req, res) => {
+  //   try {
+  //     const imageStore = await ImageStoreModel.findOne();
 
-      const __filename = fileURLToPath(import.meta.url);
+  //     const __filename = fileURLToPath(import.meta.url);
 
-      const __dirname = dirname(__filename);
+  //     const __dirname = dirname(__filename);
   
-      const filePath = path.join(__dirname, "..", imageStore.SmallBanner); // Отримайте шлях до файлу
+  //     const filePath = path.join(__dirname, "..", imageStore.SmallBanner); // Отримайте шлях до файлу
 
-      if (filePath) {
-        return res.download(filePath);
-      }
-      return res.status(400).json({ message: "Dowload error" });
+  //     if (filePath) {
+  //       return res.download(filePath);
+  //     }
+  //     return res.status(400).json({ message: "Dowload error" });
 
-    } catch(error) {
-      console.log(error);
-      res.status(400).json({
-        message: 'Dowload Error'
-      });
-    }
-  }
+  //   } catch(error) {
+  //     console.log(error);
+  //     res.status(400).json({
+  //       message: 'Dowload Error'
+  //     });
+  //   }
+  // }
 
-  export const getAllBanners = async (req, res) => {
-    try {
-      const imageStorege = await ImageStoreModel.findOne();
+  // export const getAllBanners = async (req, res) => {
+  //   try {
+  //     const imageStorege = await ImageStoreModel.findOne();
 
-      if(!imageStorege) {
-        res.status(404).json({
-          message: 'Files not found'
-        });
-      }
+  //     if(!imageStorege) {
+  //       res.status(404).json({
+  //         message: 'Files not found'
+  //       });
+  //     }
 
-      res.json(imageStorege);
-    } catch(error) {
-      console.log(error);
-      res.status(404).json({
-        message: 'Files not found'
-      });
-    }
-  }
+  //     res.json(imageStorege);
+  //   } catch(error) {
+  //     console.log(error);
+  //     res.status(404).json({
+  //       message: 'Files not found'
+  //     });
+  //   }
+  // }
 
   export const updateWalletAddress = async (req, res) => {
     try {

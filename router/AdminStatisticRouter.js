@@ -23,9 +23,9 @@ const uploads = multer({storage})
 router.post('/create-admin-statistic',AdminStatisticController.createAdminStatistic);
 router.get('/get-admin-statistic',checkAdmin,AdminStatisticController.getAdminStatistic);
 router.get('/get-user-statistic/:id',checkAdmin,AdminStatisticController.getOneUserForAdmin);
-router.post('/create-image-storage',AdminStatisticController.createImageStorage);
-router.patch('/upload-big-baner',uploads.single('BigBanner'),AdminStatisticController.UploadBigBaner);
-router.patch('/upload-middle-baner',uploads.single('MiddleBanner'),AdminStatisticController.UploadMiddleBaner);
-router.patch('/upload-small-baner',uploads.single('SmallBanner'),AdminStatisticController.UploadSmallBaner);
+// router.post('/create-image-storage',AdminStatisticController.createImageStorage);
+// router.patch('/upload-big-baner',uploads.single('BigBanner'),AdminStatisticController.UploadBigBaner);
+// router.patch('/upload-middle-baner',uploads.single('MiddleBanner'),AdminStatisticController.UploadMiddleBaner);
+// router.patch('/upload-small-baner',uploads.single('SmallBanner'),AdminStatisticController.UploadSmallBaner);
 
 export default router;

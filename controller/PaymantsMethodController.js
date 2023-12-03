@@ -26,7 +26,9 @@ export const getAllPaymantsMethod = async (req,res) => {
             res.status(404).json({ message: 'Paymants Not fount' });
         }
 
-        res.json(paymant)
+        console.log('paymant',paymant);
+
+        res.json(paymant.reverse())
     } catch(error) {
         console.log(error);
         res.status(404).json({ message: 'Paymants Not fount' });

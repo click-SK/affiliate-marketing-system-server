@@ -114,5 +114,5 @@ export const createPartnerStatistic = async (req, res) => {
   }
 
   // setTimeout(() => {
-  //   ParthnerStatisticService.createChartSevenDays();
+  //   ParthnerStatisticService.createDefaultChartYear();
   // },5000)

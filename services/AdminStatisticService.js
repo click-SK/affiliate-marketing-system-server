@@ -1,5 +1,7 @@
 import AdminStatisticModel from "../model/AdminStatistic.js";
 import PartnerStatisticModel from '../model/PartnerStatistic.js';
+import AdminArchiheChartsMonthModel from "../model/Archive/AdminArchiheChartsMonth.js";
+import AdminArchiheChartsYearModel from "../model/Archive/AdminArchiheChartsYear.js";
 import UserModel from '../model/User.js';
 import * as Services from './services.js';
 import moment from 'moment-timezone';
@@ -128,6 +130,10 @@ export const createDefaultChartMonth = async () => {
         return
       }
 
+      await AdminArchiheChartsMonthModel.create({
+        chartsMonth: adminStatistic.chartsMonth
+      })
+
       adminStatistic.chartsMonth.clicks = defaultArray;
       adminStatistic.chartsMonth.buys = defaultArray;
       adminStatistic.chartsMonth.conversions = defaultArray;
@@ -153,6 +159,11 @@ export const createDefaultChartMonth = async () => {
         console.log('Statistic not found');
         return
       }
+
+      await AdminArchiheChartsYearModel.create({
+        chartsYear: statistic.chartsYear
+      })
+
 
       statistic.chartsYear.clicks = defaultArray;
       statistic.chartsYear.buys = defaultArray;

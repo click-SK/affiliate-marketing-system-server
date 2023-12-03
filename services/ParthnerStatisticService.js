@@ -1,5 +1,7 @@
 import * as Services from "./services.js";
 import PartnerStatisticModel from "../model/PartnerStatistic.js";
+import ArchiheChartsMonthModel from "../model/Archive/ArchiheChartsMonth.js";
+import ArchiheChartsYearModel from "../model/Archive/ArchiheChartsYear.js";
 import UserModel from "../model/User.js";
 import moment from "moment-timezone";
 import { CronJob } from "cron";
@@ -532,12 +534,18 @@ export const createDefaultChartMonth = async () => {
     }
 
     const partnerId = user._id.toString();
+
     const statistic = await PartnerStatisticModel.findOne({ partnerId });
 
     if (!statistic) {
       console.log("No statistics found for partner:", partnerId);
       continue;
     }
+
+    await ArchiheChartsMonthModel.create({
+      partnerId: partnerId,
+      chartsMonth: statistic.chartsMonth
+    })
 
     statistic.chartsMonth.clicks = defaultArray;
     statistic.chartsMonth.buys = defaultArray;
@@ -657,6 +665,11 @@ export const createDefaultChartYear = async () => {
       continue;
     }
 
+    await ArchiheChartsYearModel.create({
+      partnerId: partnerId,
+      chartsYear: statistic.chartsYear
+    })
+
     statistic.chartsYear.clicks = defaultArray;
     statistic.chartsYear.buys = defaultArray;
     statistic.chartsYear.conversions = defaultArray;
@@ -717,7 +730,7 @@ export const calculataLastMonthToYearChart = async () => {
       currentMonthClicksItem.number = clicksCurrentMonth;
       currentMonthConversionsItem.number = conversionCurrentMonth;
 
-      await statistic.save();
+      // await statistic.save();
     }
   } catch (error) {
     console.log("error", error);
