@@ -195,24 +195,57 @@ export const getMe = async (req, res) => {
     }
   };
 
+  // export const searchUsers = async (req, res) => {
+  //   try {
+  //     const { page, limit, search } = req.query;
+  
+  //     let skip = (page - 1) * limit;
+
+  //     console.log('skip',skip);
+      // // Виключення адміністраторів з результатів пошуку
+      // const query = {
+      //   ...search ? { name: new RegExp(search, 'i') } : {},
+      //   isAdmin: { $ne: true } // Додаємо умову, щоб ігнорувати адміністраторів
+      // };
+  
+      // const users = await UserModel.find(query).skip(skip).limit(limit)
+      // .populate('statistics')
+  
+      // res.json(users);
+  //   } catch (error) {
+  //     console.log(error);
+  //     res.status(500).json({ message: 'Server error' });
+  //   }
+  // };
+
   export const searchUsers = async (req, res) => {
     try {
-      const { page, limit, search } = req.query;
-  
-      const skip = (page - 1) * limit;
+      let { page, limit, search } = req.query;
+
+      // Переконуємося, що page та limit є числами і не менше 1
+      page = Math.max(Number(page) || 1, 1);
+      limit = Math.max(Number(limit) || 10, 1);
+
+      let skip = (page - 1) * limit;
+
+      // Перевірка на випадок, якщо skip вийшов від'ємним
+      if (skip < 0) skip = 0;
+
       // Виключення адміністраторів з результатів пошуку
       const query = {
-        ...search ? { name: new RegExp(search, 'i') } : {},
-        isAdmin: { $ne: true } // Додаємо умову, щоб ігнорувати адміністраторів
+        ...(search ? { name: new RegExp(search, "i") } : {}),
+        isAdmin: { $ne: true }, // Додаємо умову, щоб ігнорувати адміністраторів
       };
-  
-      const users = await UserModel.find(query).skip(skip).limit(limit)
-      .populate('statistics')
-  
+
+      const users = await UserModel.find(query)
+        .skip(skip)
+        .limit(limit)
+        .populate("statistics");
+
       res.json(users);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: 'Server error' });
+      res.status(500).json({ message: "Server error" });
     }
   };
 

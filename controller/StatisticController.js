@@ -75,10 +75,14 @@ export const createPartnerStatistic = async (req, res) => {
       const { link } = req.query;
 
       const partner = await UserModel.findOne({ link });
+      
 
       if(!partner) {
         return res.status(404).send({message:'partner not found'});
       }
+      
+      const code = partner.promotionalCode; 
+      console.log('code',code);
 
       const partnerId = partner._id;
       const statistic = await PartnerStatisticModel.findOne({partnerId});
@@ -103,7 +107,7 @@ export const createPartnerStatistic = async (req, res) => {
         statistic.event.push(newObject)
       }
       await statistic.save();
-      res.redirect('https://makenude.ai/');
+      res.redirect(`https://makenude.ai/?promo=${code}`);
 
     } catch(error) {
       console.log(error);

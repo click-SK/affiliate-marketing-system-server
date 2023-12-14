@@ -336,9 +336,9 @@ export const handleBuy = async () => {
       console.log('balanceValue',balanceValue);
       if(partner.balance != balanceValue) {
         partner.balance = balanceValue.toFixed(1);;
-      // await partner.save();
+      await partner.save();
       }
-      // await statistic.save();
+      await statistic.save();
     }
     }
   } catch (error) {
@@ -730,7 +730,7 @@ export const calculataLastMonthToYearChart = async () => {
       currentMonthClicksItem.number = clicksCurrentMonth;
       currentMonthConversionsItem.number = conversionCurrentMonth;
 
-      // await statistic.save();
+      await statistic.save();
     }
   } catch (error) {
     console.log("error", error);

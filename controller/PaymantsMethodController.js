@@ -21,14 +21,17 @@ export const createPaymantMethod = async (req,res) => {
 
 export const getAllPaymantsMethod = async (req,res) => {
     try {
-        const paymant = await PaymantsMethodModel.find();
+        let paymant = await PaymantsMethodModel.find();
+
         if(!paymant) {
-            res.status(404).json({ message: 'Paymants Not fount' });
+           return res.status(404).json({ message: 'Paymants Not fount' });
         }
+
+        paymant.reverse();
 
         console.log('paymant',paymant);
 
-        res.json(paymant.reverse())
+        res.json(paymant)
     } catch(error) {
         console.log(error);
         res.status(404).json({ message: 'Paymants Not fount' });

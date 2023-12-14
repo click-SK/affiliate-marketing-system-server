@@ -35,7 +35,13 @@ export const createPaymantItem = async (req,res) => {
 export const getAllPaymantItem = async (req,res) => {
     try {
         const { page, limit } = req.query;
-        const skip = (page - 1) * limit;
+    
+        // page = Math.max(Number(page) || 1, 1);
+        // limit = Math.max(Number(limit) || 10, 1);
+
+        let skip = (page - 1) * limit;
+
+        if (skip < 0) skip = 0;
 
         const data = await PaymentRequestModel.find()
         .sort({ createdAt: -1 })
@@ -61,7 +67,10 @@ export const getAllPaymantItem = async (req,res) => {
 export const getAllPaymantItemForUser = async (req,res) => {
     try {
         const { page, limit, userId } = req.query;
-        const skip = (page - 1) * limit;
+        let skip = (page - 1) * limit;
+
+        // Перевірка на випадок, якщо skip вийшов від'ємним
+        if (skip < 0) skip = 0;
 
         console.log('work');
 
